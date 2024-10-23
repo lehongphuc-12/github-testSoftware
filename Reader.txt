@@ -1,0 +1,26 @@
+rcode,name,byear
+R001,Sophia Moore,1947
+R002,John Doe,1950
+R003,James Taylor,1999
+R004,Noah White,1992
+R005,David Wilson,1994
+R006,Liam Garcia,1921
+R007,Amelia Harris,1948
+R008,Amelia Harris,1989
+R009,Jane Smith,1968
+R010,Noah White,1946
+R011,James Taylor,1984
+R012,Avery Martinez,1901
+R013,Michael Brown,1976
+R014,Ethan Martin,1964
+R015,Avery Martinez,1989
+R016,Mia Jackson,1989
+R017,James Taylor,1919
+R018,Alice Johnson,1996
+R019,Emily Davis,1952
+R020,Avery Martinez,1937
+R021,Isabella Anderson,1927
+R022,Liam Garcia,1973
+R023,Amelia Harris,1933
+R024,Mia Jackson,1971
+R025,Lucas Thomas,1916

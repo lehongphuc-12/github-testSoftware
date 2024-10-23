@@ -4,15 +4,14 @@
  */
 package ManagementReader;
 
-/**
- *
- * @author hoang
- */
+import java.io.*;
+
 public class ReaderLinkedList {
     private LinkedListNode<Reader> head;
 
     public ReaderLinkedList() {
         head = null;
+        this.readFile("Reader.txt");
     }
 
     // Thêm độc giả vào cuối danh sách
@@ -66,6 +65,32 @@ public class ReaderLinkedList {
                 return;
             }
             temp = temp.next;
+        }
+    }
+
+    public void readFile(String fileName) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                this.addReader(new Reader(parts[0], parts[1], Integer.parseInt(parts[2])));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void writeFile() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("Reader.txt"))) {
+            LinkedListNode<Reader> cur = head;
+            while (cur.next != null) {
+                Reader reader = cur.data;
+                bw.write(reader.rcode + "," + reader.name + "," + reader.byear);
+                bw.newLine();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }

@@ -1,0 +1,25 @@
+bcode,title,quantity,lended,price
+B001,Pride and Prejudice,8,8,15.24
+B002,Pride and Prejudice,1,1,27.43
+B003,The Lord of the Rings,5,4,19.9
+B004,Animal Farm,10,1,16.81
+B005,Jane Eyre,2,2,18.9
+B006,The Great Gatsby,2,1,29.78
+B007,To Kill a Mockingbird,3,3,8.85
+B008,Jane Eyre,8,1,16.31
+B009,Wuthering Heights,2,1,9.04
+B010,The Chronicles of Narnia,7,3,22.61
+B011,The Picture of Dorian Gray,9,0,29.11
+B012,The Great Gatsby,9,1,12.46
+B013,The Hobbit,10,6,16.1
+B014,The Picture of Dorian Gray,4,0,22.73
+B015,Animal Farm,1,1,28.31
+B016,Wuthering Heights,8,1,10.75
+B017,The Chronicles of Narnia,9,2,17.23
+B018,Pride and Prejudice,3,1,13.2
+B019,1984,2,2,8.97
+B020,War and Peace,4,0,19.35
+B021,The Alchemist,7,2,7.56
+B022,The Alchemist,10,0,10.51
+B023,Moby Dick,8,0,18.98
+B024,Brave New World,9,3,10.17

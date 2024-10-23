@@ -1,44 +1,36 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Menu;
+
+import Lending.Lending;
+import Lending.LendingLinkedList;
 import ManagementBook.BinarySearchTree;
 import ManagementBook.Book;
-import ManagementLending.Lending;
-import ManagementLending.LendingLinkedList;
 import ManagementReader.Reader;
 import ManagementReader.ReaderLinkedList;
-import java.util.Scanner;
-/**
- *
- * @author hoang
- */
+
 public class Menu {
-    private static BinarySearchTree bookTree = new BinarySearchTree();
-    private static ReaderLinkedList readerList = new ReaderLinkedList();
-    private static LendingLinkedList lendingList = new LendingLinkedList();
+    static BinarySearchTree bookTree = new BinarySearchTree();
+    static ReaderLinkedList readerList = new ReaderLinkedList();
+    static LendingLinkedList lendingList = new LendingLinkedList();
+    static Utils input = new Utils();
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int choice;       
+        int choice;
         do {
             System.out.println("========= Library Management System =========");
             System.out.println("1. Book Management");
             System.out.println("2. Reader Management");
             System.out.println("3. Lending Management");
             System.out.println("0. Exit");
-            System.out.print("Your choice: ");
-            choice = sc.nextInt();           
+            choice = input.getInt("Your choice: ");
             switch (choice) {
                 case 1:
-                    bookManagementMenu(sc);
+                    bookManagementMenu();
                     break;
                 case 2:
-                    readerManagementMenu(sc);
+                    readerManagementMenu();
                     break;
                 case 3:
-                    lendingManagementMenu(sc);
+                    lendingManagementMenu();
                     break;
                 case 0:
                     System.out.println("Exiting...");
@@ -49,7 +41,7 @@ public class Menu {
         } while (choice != 0);
     }
 
-    public static void bookManagementMenu(Scanner sc) {
+    public static void bookManagementMenu() {
         int choice;
         do {
             System.out.println("\n--- Book Management ---");
@@ -57,31 +49,25 @@ public class Menu {
             System.out.println("2. Display books");
             System.out.println("3. Search book");
             System.out.println("4. Delete book");
+            System.out.println("5. Count book");
             System.out.println("0. Back to main menu");
-            System.out.print("Your choice: ");
-            choice = sc.nextInt();
-            sc.nextLine();  
+            choice = input.getInt("Your choice: ");
             switch (choice) {
                 case 1:
-                    System.out.print("Enter book code: ");
-                    String bcode = sc.nextLine();
-                    System.out.print("Enter title: ");
-                    String title = sc.nextLine();
-                    System.out.print("Enter quantity: ");
-                    int quantity = sc.nextInt();
-                    System.out.print("Enter lended quantity: ");
-                    int lended = sc.nextInt();
-                    System.out.print("Enter price: ");
-                    double price = sc.nextDouble();
+                    String bcode = input.getString("Enter book code: ");
+                    String title = input.getString("Enter title: ");
+                    int quantity = input.getInt("Enter quantity: ");
+                    int lended = input.getInt("Enter lended quantity: ");
+                    double price = input.getDouble("Enter price: ");
                     bookTree.insert(new Book(bcode, title, quantity, lended, price));
                     break;
                 case 2:
                     System.out.println("Displaying books:");
                     bookTree.inOrderTraverse();
                     break;
+
                 case 3:
-                    System.out.print("Enter book code to search: ");
-                    bcode = sc.nextLine();
+                    bcode = input.getString("Enter book code to search: ");
                     Book book = bookTree.search(bcode);
                     if (book != null)
                         System.out.println("Book found: " + book);
@@ -89,10 +75,11 @@ public class Menu {
                         System.out.println("Book not found.");
                     break;
                 case 4:
-                    System.out.print("Enter book code to delete: ");
-                    bcode = sc.nextLine();
+                    bcode = input.getString("Enter book code to delete:");
                     bookTree.delete(bcode);
                     break;
+                case 5:
+                    System.err.println("Nums of book:" + bookTree.countBooks());
                 case 0:
                     System.out.println("Returning to main menu...");
                     break;
@@ -101,8 +88,8 @@ public class Menu {
             }
         } while (choice != 0);
     }
-//hello
-    public static void readerManagementMenu(Scanner sc) {
+
+    public static void readerManagementMenu() {
         int choice;
         do {
             System.out.println("\n--- Reader Management ---");
@@ -111,16 +98,12 @@ public class Menu {
             System.out.println("3. Search reader");
             System.out.println("4. Delete reader");
             System.out.println("0. Back to main menu");
-            System.out.print("Your choice: ");
-            choice = sc.nextInt();
+            choice = input.getInt("Your choice: ");
             switch (choice) {
                 case 1:
-                    System.out.print("Enter reader code: ");
-                    String rcode = sc.nextLine();
-                    System.out.print("Enter name: ");
-                    String name = sc.nextLine();
-                    System.out.print("Enter birth year: ");
-                    int byear = sc.nextInt();
+                    String rcode = input.getString("Enter reader code:");
+                    String name = input.getString("Enter name:");
+                    int byear = input.getbYear("Enter birth year: ");
                     readerList.addReader(new Reader(rcode, name, byear));
                     break;
                 case 2:
@@ -129,7 +112,7 @@ public class Menu {
                     break;
                 case 3:
                     System.out.print("Enter reader code to search: ");
-                    rcode = sc.nextLine();
+                    rcode = input.getString("Enter reader code to search:");
                     Reader reader = readerList.searchReader(rcode);
                     if (reader != null)
                         System.out.println("Reader found: " + reader);
@@ -137,8 +120,7 @@ public class Menu {
                         System.out.println("Reader not found.");
                     break;
                 case 4:
-                    System.out.print("Enter reader code to delete: ");
-                    rcode = sc.nextLine();
+                    rcode = input.getString("Enter reader code to delete:");
                     readerList.deleteReader(rcode);
                     break;
                 case 0:
@@ -150,23 +132,22 @@ public class Menu {
         } while (choice != 0);
     }
 
-    public static void lendingManagementMenu(Scanner sc) {
+    public static void lendingManagementMenu() {
         int choice;
         do {
             System.out.println("\n--- Lending Management ---");
             System.out.println("1. Add lending");
             System.out.println("2. Display lendings");
             System.out.println("0. Back to main menu");
-            System.out.print("Your choice: ");
-            choice = sc.nextInt();
+            choice = input.getInt("Your choice: ");
             switch (choice) {
                 case 1:
                     System.out.print("Enter book code: ");
-                    String bcode = sc.nextLine();
+                    String bcode = input.getString("Enter book code: ");
                     System.out.print("Enter reader code: ");
-                    String rcode = sc.nextLine();
-                    System.out.print("Enter lending state (0 = borrowed, 1 = returned): ");
-                    int state = sc.nextInt();
+                    String rcode = input.getString("Enter reader code:");
+                    int state = input.getState(
+                            "Enter lending state (0: the book is not given to the reader, 1: the book is still at the reader, not given back, 2: the book is given back to the library): ");
                     lendingList.addLending(new Lending(bcode, rcode, state));
                     break;
                 case 2:

@@ -4,11 +4,13 @@
  */
 package ManagementBook;
 
+import java.io.*;
 import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- *hi
+ * hi
+ * 
  * @author hoang
  */
 public class BinarySearchTree {
@@ -16,6 +18,7 @@ public class BinarySearchTree {
 
     public BinarySearchTree() {
         root = null;
+        this.readFileBook("Book.txt");
     }
 
     // Thêm sách vào cây
@@ -25,8 +28,7 @@ public class BinarySearchTree {
 
     private BookNode insertRec(BookNode root, Book book) {
         if (root == null) {
-            root = new BookNode(book);
-            return root;
+            return new BookNode(book);
         }
         if (book.bcode.compareTo(root.data.bcode) < 0)
             root.left = insertRec(root.left, book);
@@ -43,7 +45,7 @@ public class BinarySearchTree {
     private void inOrderRec(BookNode root) {
         if (root != null) {
             inOrderRec(root.left);
-            System.out.println(root.data);
+            System.out.println(root.data.toString());
             inOrderRec(root.right);
         }
     }
@@ -120,5 +122,18 @@ public class BinarySearchTree {
         if (root == null)
             return 0;
         return 1 + countRec(root.left) + countRec(root.right);
+    }
+
+    public  void readFileBook(String fileName) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            br.readLine();
+            while((line = br.readLine()) != null){
+                String[] parts = line.split(",");
+                this.insert(new Book(parts[0],parts[1],Integer.parseInt(parts[2]),Integer.parseInt(parts[3]),Double.parseDouble(parts[4])));
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }
