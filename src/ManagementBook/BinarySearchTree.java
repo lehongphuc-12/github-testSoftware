@@ -4,6 +4,9 @@
  */
 package ManagementBook;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import java.io.*;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -124,16 +127,61 @@ public class BinarySearchTree {
         return 1 + countRec(root.left) + countRec(root.right);
     }
 
-    public  void readFileBook(String fileName) {
+    public void readFileBook(String fileName) {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
             br.readLine();
-            while((line = br.readLine()) != null){
+            while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                this.insert(new Book(parts[0],parts[1],Integer.parseInt(parts[2]),Integer.parseInt(parts[3]),Double.parseDouble(parts[4])));
+                this.insert(new Book(parts[0], parts[1], Integer.parseInt(parts[2]), Integer.parseInt(parts[3]),
+                        Double.parseDouble(parts[4])));
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
+
+    // In-order traverse to file
+    public void inOrderTraverseToFile(String fileName) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
+            inOrderRecToFile(root, bw);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void inOrderRecToFile(BookNode root, BufferedWriter bw) throws IOException {
+        if (root != null) {
+            inOrderRecToFile(root.left, bw);
+            bw.write(root.data.toString());
+            bw.newLine();
+            inOrderRecToFile(root.right, bw);
+        }
+    }
+
+    public void simplyBalance() {
+        List<Book> books = new ArrayList<>();
+        inOrderToList(root, books);
+        root = sortedListToBST(books, 0, books.size() - 1);
+    }
+
+    private void inOrderToList(BookNode root, List<Book> books) {
+        if (root != null) {
+            inOrderToList(root.left, books);
+            books.add(root.data);
+            inOrderToList(root.right, books);
+        }
+    }
+
+    private BookNode sortedListToBST(List<Book> books, int start, int end) {
+        if (start > end) {
+            return null;
+        }
+        int mid = (start + end) / 2;
+        BookNode node = new BookNode(books.get(mid));
+        node.left = sortedListToBST(books, start, mid - 1);
+        node.right = sortedListToBST(books, mid + 1, end);
+        return node;
+    }
+    
 }
