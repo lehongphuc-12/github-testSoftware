@@ -4,6 +4,7 @@
  */
 package ManagementBook;
 
+import DataStructure.MyQueue;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -35,7 +36,9 @@ public class BinarySearchTree {
         }
         if (book.bcode.compareTo(root.data.bcode) < 0)
             root.left = insertRec(root.left, book);
-        else if (book.bcode.compareTo(root.data.bcode) > 0)
+        else if (book.bcode.
+                  
+                  compareTo(root.data.bcode) > 0)
             root.right = insertRec(root.right, book);
         return root;
     }
@@ -58,15 +61,15 @@ public class BinarySearchTree {
         if (root == null)
             return;
 
-        Queue<BookNode> queue = new LinkedList<>();
-        queue.add(root);
+        MyQueue<BookNode> queue = new MyQueue();
+        queue.enqueue(root);
         while (!queue.isEmpty()) {
-            BookNode current = queue.poll();
+            BookNode current = queue.dequeue();
             System.out.println(current.data);
             if (current.left != null)
-                queue.add(current.left);
+                queue.enqueue(current.left);
             if (current.right != null)
-                queue.add(current.right);
+                queue.enqueue(current.right);
         }
     }
 

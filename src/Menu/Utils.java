@@ -4,17 +4,20 @@ import java.util.Scanner;
 
 public class Utils {
     Scanner scanner = new Scanner(System.in);
+
     public String getString(String mess) {
         while (true) {
             System.out.println(mess);
             String s = scanner.nextLine();
-            if (!s.isEmpty()) return s;
+            if (!s.isEmpty())
+                return s;
             System.out.println("Input empty. Try again!");
         }
     }
+
     public int getInt(String mess) {
         while (true) {
-            try{
+            try {
                 int n = Integer.parseInt(getString(mess));
                 return n;
             } catch (NumberFormatException e) {
@@ -22,9 +25,10 @@ public class Utils {
             }
         }
     }
+
     public double getDouble(String mess) {
         while (true) {
-            try{
+            try {
                 double n = Double.parseDouble(getString(mess));
                 return n;
             } catch (NumberFormatException e) {
@@ -32,15 +36,20 @@ public class Utils {
             }
         }
     }
+
     public int getState(String mess) {
         while (true) {
-            try{
+            try {
                 int n = Integer.parseInt(getString(mess));
                 switch (n) {
-                    case 0:  return 0;
-                    case 1 : return 1;
-                    case 2 : return 2;
-                    default: break;
+                    case 0:
+                        return 0;
+                    case 1:
+                        return 1;
+                    case 2:
+                        return 2;
+                    default:
+                        break;
                 }
                 System.out.println("This input invalid! Try again! ");
             } catch (NumberFormatException e) {
@@ -48,9 +57,10 @@ public class Utils {
             }
         }
     }
+
     public int getbYear(String mess) {
         while (true) {
-            try{
+            try {
                 int n = Integer.parseInt(getString(mess));
                 if (n >= 1900 && n <= 2010) {
                     return n;

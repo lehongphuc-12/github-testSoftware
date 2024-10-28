@@ -12,7 +12,6 @@ public class Menu {
     static ReaderLinkedList readerList = new ReaderLinkedList();
     static LendingLinkedList lendingList = new LendingLinkedList();
     static Utils input = new Utils();
-
     public static void main(String[] args) {
         int choice;
         do {

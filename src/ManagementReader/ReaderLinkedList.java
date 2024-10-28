@@ -6,6 +6,8 @@ package ManagementReader;
 
 import java.io.*;
 
+import Lending.LinkedListNode;
+
 public class ReaderLinkedList {
     private LinkedListNode<Reader> head;
 
